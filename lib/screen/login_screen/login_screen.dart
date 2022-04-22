@@ -11,7 +11,7 @@ import '../home_screen/home_screen.dart';
 class SignInScreen extends StatelessWidget {
 LoginController controller=LoginController();
 
-LoginApi loginApi=LoginApi();
+// LoginApi loginApi=LoginApi();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

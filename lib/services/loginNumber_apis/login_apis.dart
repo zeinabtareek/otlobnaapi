@@ -1,9 +1,26 @@
-import 'dart:convert';
-import 'package:otlobnaapi/constant/cache_helper.dart';
-import 'package:otlobnaapi/model/token_model.dart';
-import '../../constant/constStrings.dart';
-import '../../repositories/auth_repo/auth_token.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+
+class LoginServices {
+  final Dio _dio = Dio();
+
+  login(String email, String password) async {
+    try {
+      Response response = await _dio.post(
+          'https://www.otlobna-eg.com/api/v1/auth/delivery-man/login',
+          data: {"email": email, "password": password});
+      if (response.statusCode == 200) {
+        print(response.data);
+      }
+    } catch (e) {}
+  }
+}
+
+// import 'dart:convert';
+// import 'package:otlobnaapi/constant/cache_helper.dart';
+// import 'package:otlobnaapi/model/token_model.dart';
+// import '../../constant/constStrings.dart';
+// import '../../repositories/auth_repo/auth_token.dart';
+// // import 'package:http/http.dart' as http;
 
 // class LoginApi extends LoginNumberRepo{
 //   @override
@@ -30,23 +47,23 @@ import 'package:http/http.dart' as http;
 //        return tokenModel;
 //   }
 // }
-class LoginApi{
-
-  Login(String email, String password)async{
-    try{
-        http.Response response = await http.post(
-          Uri.parse('https://www.otlobna-eg.com/api/v1/auth/delivery-man/login'),
-
-          body:{
-      "email":email,
-      "password":password
-      });
-      if(response.statusCode==200){
-        print(response.body);
-      }
-
-    }catch(e){
-
-    }
-  }
-}
+// class LoginApi{
+//
+//   Login(String email, String password)async{
+//     try{
+//         http.Response response = await http.post(
+//           Uri.parse('https://www.otlobna-eg.com/api/v1/auth/delivery-man/login'),
+//
+//           body:{
+//       "email":email,
+//       "password":password
+//       });
+//       if(response.statusCode==200){
+//         print(response.body);
+//       }
+//
+//     }catch(e){
+//
+//     }
+//   }
+// }

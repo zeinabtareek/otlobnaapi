@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  LoginApi loginApi =LoginApi();
+  // LoginApi loginApi =LoginApi();
   ProfileAPI profileAPI =ProfileAPI();
   LoginController controller=Get.put(LoginController());
   @override
