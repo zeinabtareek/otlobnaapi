@@ -8,7 +8,7 @@ class LoginController extends GetxController {
   // LoginApi loginApi=LoginApi();
   // final emailController = TextEditingController();
   // final passController = TextEditingController();
-  final _services = LoginServices();
+  final _services = LoginApi();
   final email = ''.obs;
   final password = ''.obs;
 
@@ -23,7 +23,7 @@ class LoginController extends GetxController {
   }
 
   login() {
-    _services.login(email.value, password.value);
+    _services.generateToken(email: email.value, password: password.value);
     // CacheHelper.saveData(key: 'email', value: emailController.text,);
     // CacheHelper.saveData(key: 'password', value: passController.text,);
     // print('${CacheHelper.getData(key: 'password')}');

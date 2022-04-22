@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otlobnaapi/screen/login_screen/controller/login_controller.dart';
+import 'package:otlobnaapi/services/Profile_apis/profile_apis.dart';
 
 import '../../componant/auth_componant/custom_text_field.dart';
 import '../../services/loginNumber_apis/login_apis.dart';
@@ -115,8 +116,8 @@ LoginController controller=LoginController();
                       TextButton(
                           child: Text('sign_in'.tr),
                           onPressed: () {
-                            // Get.to(HomeScreen());
-                            controller.login();
+                             Get.to(HomeScreen());
+                            // ProfileAPI().getData();
                            // loginApi.Login( controller.emailController.text, controller.passController.text);
                           }),
                     ],

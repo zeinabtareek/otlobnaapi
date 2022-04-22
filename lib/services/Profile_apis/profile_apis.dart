@@ -10,10 +10,9 @@ import '../../constant/constStrings.dart';
 class ProfileAPI extends ProfileRepo{
   AuthHelper authHelper=AuthHelper();
   @override
-  Future<ProfileModel> getData({String? token}) async {
+  Future<ProfileModel> getData() async {
     ProfileModel profileModel=ProfileModel();
-   token=authHelper.authToken;
-   // token= CacheHelper.getData(key: 'token');
+    var token= CacheHelper.getData(key: 'token');
     try{
       http.Response response= await http.get(
           Uri.parse('${ConstStrings.baseURL}${ConstStrings.profileURL}$token'),
