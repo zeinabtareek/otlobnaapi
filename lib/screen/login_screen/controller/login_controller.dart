@@ -24,8 +24,8 @@ class LoginController extends GetxController {
 
   login() {
     _services.generateToken(email: email.value, password: password.value);
-    // CacheHelper.saveData(key: 'email', value: emailController.text,);
-    // CacheHelper.saveData(key: 'password', value: passController.text,);
-    // print('${CacheHelper.getData(key: 'password')}');
+    CacheHelper.saveData(key: 'email', value: email.value,);
+    CacheHelper.saveData(key: 'password', value: password.value,);
+    print('${CacheHelper.getData(key: 'password')}');
   }
 }

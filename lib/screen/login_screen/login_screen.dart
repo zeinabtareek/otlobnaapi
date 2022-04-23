@@ -5,6 +5,7 @@ import 'package:otlobnaapi/screen/login_screen/controller/login_controller.dart'
 import 'package:otlobnaapi/services/Profile_apis/profile_apis.dart';
 
 import '../../componant/auth_componant/custom_text_field.dart';
+import '../../constant/cache_helper.dart';
 import '../../services/loginNumber_apis/login_apis.dart';
 import '../../utils/images.dart';
 import '../home_screen/home_screen.dart';
@@ -12,7 +13,7 @@ import '../home_screen/home_screen.dart';
 class SignInScreen extends StatelessWidget {
 LoginController controller=LoginController();
 
-// LoginApi loginApi=LoginApi();
+LoginApi loginApi=LoginApi();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,18 +61,7 @@ LoginController controller=LoginController();
                 // ),
                           ]),
 
-                        // CustomTextField(
-                        //     hintText: 'password'.tr,
-                        //     inputAction: TextInputAction.done,
-                        //     inputType: TextInputType.visiblePassword,
-                        //     prefixIcon: Images.lock,
-                        //     controller: passController,
-                        //     onChanged: (v) {
-                        //       print(v);
-                        //       controller.validPassword(v);
-                        //     },
-                        //     isPassword: true,
-                        //   ),
+
                           TextField(
                             // controller: controller.emailController,
                             onChanged: (v){
@@ -117,9 +107,13 @@ LoginController controller=LoginController();
                           child: Text('sign_in'.tr),
                           onPressed: () {
                              Get.to(HomeScreen());
-                            // ProfileAPI().getData();
-                           // loginApi.Login( controller.emailController.text, controller.passController.text);
-                          }),
+                             print(CacheHelper.getData(key: 'token'));
+                             controller.login();
+
+
+                           loginApi.generateToken(  );
+                          }
+                        ),
                     ],
                   ),
                 ),

@@ -12,16 +12,16 @@ class ProfileAPI extends ProfileRepo{
   @override
   Future<ProfileModel> getData() async {
     ProfileModel profileModel=ProfileModel();
-    var token= CacheHelper.getData(key: 'token');
+    // var token= CacheHelper.getData(key: 'token');
     try{
       http.Response response= await http.get(
-          Uri.parse('${ConstStrings.baseURL}${ConstStrings.profileURL}$token'),
+          Uri.parse('${ConstStrings.baseURL}${ConstStrings.profileURL}${authHelper.authToken}'),
        );
       if(response.statusCode==200){
         print(response.body);
         var data=jsonDecode(response.body);
         profileModel=ProfileModel.fromJson(data);
-        print('profiletoken :$token');
+        print('profiletoken :${authHelper.authToken}');
         print('profileModel :${profileModel.email}');
         return profileModel;}
      }catch (e){

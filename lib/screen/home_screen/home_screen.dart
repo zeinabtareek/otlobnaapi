@@ -7,6 +7,7 @@ import 'package:otlobnaapi/screen/login_screen/controller/login_controller.dart'
 import '../../constant/cache_helper.dart';
 import '../../services/Profile_apis/profile_apis.dart';
 import '../../services/loginNumber_apis/login_apis.dart';
+import '../../services/orders_apis/all_orders_apis.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,9 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    AllOrdersAPI().getAllOrders(2);
+
     // loginApi.generateToken();
-    // print('token :${CacheHelper.getData(key: 'token')}');
-    // print('profileapi' +profileAPI.getData().toString());
+    print('token :${CacheHelper.getData(key: 'token')}');
+    print('profileapi' +profileAPI.getData().toString());
   }
 
   @override
