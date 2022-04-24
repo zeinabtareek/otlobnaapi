@@ -5,7 +5,7 @@ import '../../model/order_details_model.dart';
 abstract class AllOrdersRepo {
   Future<PaginatedOrderModel?> getAllOrders(int offset);
 
-  Future<OrderDetailsModel> getOrderDetails(int id);
+  Future<List<OrderDetailsModel>?> getOrderDetails(int id);
 
   Future<OrderModel> getCurrentOrder();
 

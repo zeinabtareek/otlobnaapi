@@ -32,18 +32,18 @@ class AllOrdersAPI extends AllOrdersRepo {
     return orders;
   }
 
-  Future<OrderDetailsModel> getOrderDetails(int id) async {
-    OrderDetailsModel orderModel = OrderDetailsModel();
+  Future<List<OrderDetailsModel>?> getOrderDetails(int id) async {
     try {
       // id=authHelper.orderId;
       http.Response response = await http.get(Uri.parse(
-          '${ConstStrings.baseURL}${ConstStrings.orderDetailsURL}${authHelper.authToken}/$id'));
+          'https://otlobna-eg.com/api/v1/delivery-man/order-details/${authHelper.authToken}/$id'));
       if (response.statusCode == 200) {
         print(response.body);
         var data = jsonDecode(response.body);
-
-        orderModel = OrderDetailsModel.fromJson(data);
-        return orderModel;
+        final mList = List<OrderDetailsModel>.from(
+            data.map((i) => OrderDetailsModel.fromJson(i)));
+        print(mList.length);
+        return mList;
       } else {
         print('*******getOrdersDetails*********');
         throw Exception();
@@ -52,8 +52,9 @@ class AllOrdersAPI extends AllOrdersRepo {
       print(e);
     }
 
-    return orderModel;
+    return null;
   }
+
   // Future<List<OrderModel>?> getProduct() async {
   //   try {
   //     Response response = await _dio.get(
