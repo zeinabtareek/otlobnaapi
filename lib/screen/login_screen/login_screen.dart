@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otlobnaapi/screen/login_screen/controller/login_controller.dart';
+import 'package:otlobnaapi/screen/order_details_screen/order_details_screen.dart';
 import 'package:otlobnaapi/services/Profile_apis/profile_apis.dart';
 
 import '../../componant/auth_componant/custom_text_field.dart';
@@ -97,7 +98,9 @@ LoginApi loginApi=LoginApi();
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(OrderDetails());
+                          },
                           child: Text('${'forgot_password'.tr}?'),
                         ),
                       ]),
