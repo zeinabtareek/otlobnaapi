@@ -5,9 +5,7 @@ import 'package:otlobnaapi/constant/cache_helper.dart';
 import '../../../services/loginNumber_apis/login_apis.dart';
 
 class LoginController extends GetxController {
-  // LoginApi loginApi=LoginApi();
-  // final emailController = TextEditingController();
-  // final passController = TextEditingController();
+
   final _services = LoginApi();
   final email = ''.obs;
   final password = ''.obs;
@@ -24,8 +22,5 @@ class LoginController extends GetxController {
 
   login() {
     _services.generateToken(email: email.value, password: password.value);
-    CacheHelper.saveData(key: 'email', value: email.value,);
-    CacheHelper.saveData(key: 'password', value: password.value,);
-    print('${CacheHelper.getData(key: 'password')}');
   }
 }

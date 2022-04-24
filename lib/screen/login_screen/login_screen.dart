@@ -79,7 +79,6 @@ LoginApi loginApi=LoginApi();
                               print(controller.password.value);
                             },
                           )
-
                         ]),
                       ),
                       const SizedBox(height: 10),
@@ -106,9 +105,9 @@ LoginApi loginApi=LoginApi();
                       TextButton(
                           child: Text('sign_in'.tr),
                           onPressed: () {
-                             Get.to(HomeScreen());
+                             // Get.to(HomeScreen());
                              //print(CacheHelper.getData(key: 'token'));
-                             // controller.login();
+                             controller.login();
 
 
                           // loginApi.generateToken(  );

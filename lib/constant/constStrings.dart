@@ -17,10 +17,11 @@ class ConstStrings {
   static const String updateOrderStatueURL= '/api/v1/delivery-man/update-order-status';
   static const String updatePaymentStatueURL = '/api/v1/delivery-man/update-payment-status';
   static const String orderDetailsURL = '/api/v1/delivery-man/order-details/';
-  static const String acceptOrderURL = '/api/v1/delivery-man/accept-order';
+   static const String acceptOrderURL = '/api/v1/delivery-man/accept-order';
   static const String activeStatusURL = '/api/v1/delivery-man/update-active-status';
   static const String updateProfileURL = '/api/v1/delivery-man/update-profile';
   static const String notificationURL = '/api/v1/delivery-man/notifications/';
+  static const String orderDeliveryHistory = '/api/v1/delivery-man/order-delivery-history/';
 
 
   static SizedBox sizedBoxH = SizedBox(

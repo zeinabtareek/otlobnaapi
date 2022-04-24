@@ -36,9 +36,10 @@ class LoginApi extends LoginNumberRepo{
         print(response.body);
         var data = jsonDecode(response.body);
         tokenModel= TokenModel.fromJson(data);
-        CacheHelper.saveData(key: 'token', value: tokenModel.token);
+       await CacheHelper.saveData(key: 'token', value: tokenModel.token);
         print('token :${CacheHelper.getData(key: 'token')}');
         print(tokenModel.token);
+        print(response.body);
         return tokenModel;
         }else {throw Exception('Error getting data');}
         }catch (e) {
