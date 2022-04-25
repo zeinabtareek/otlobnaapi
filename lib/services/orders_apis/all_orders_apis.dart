@@ -58,7 +58,7 @@ class AllOrdersAPI extends AllOrdersRepo {
 
   @override
   Future<OrderModel> getLatestOrders() async{
-    OrderModel orderModel=OrderModel();
+    OrderModel orderModel=OrderModel( );
     try{
       http.Response response=await http.get(Uri.parse('${ConstStrings.baseURL}${ConstStrings.latestOrdersURL}${authHelper.authToken}'));
       if(response.body==200){

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otlobnaapi/constant/cache_helper.dart';
 import 'package:otlobnaapi/screen/login_screen/login_screen.dart';
+import 'package:otlobnaapi/screen/order_details_screen/order_details_screen.dart';
 import 'package:otlobnaapi/services/Profile_apis/profile_apis.dart';
 import 'package:otlobnaapi/services/loginNumber_apis/login_apis.dart';
 

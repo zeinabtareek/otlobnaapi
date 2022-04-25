@@ -3,9 +3,7 @@ class PaginatedOrderModel {
   String? limit;
   String? offset;
   List<OrderModel>? orders;
-
   PaginatedOrderModel({this.totalSize, this.limit, this.offset, this.orders});
-
   PaginatedOrderModel.fromJson(Map<String, dynamic> json) {
     totalSize = json['total_size'];
     limit = json['limit'].toString();
@@ -17,7 +15,6 @@ class PaginatedOrderModel {
       });
     }
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['total_size'] = this.totalSize;
@@ -28,9 +25,7 @@ class PaginatedOrderModel {
     }
     return data;
   }
-
 }
-
 class OrderModel {
   int? id;
   int? userId;
@@ -58,7 +53,7 @@ class OrderModel {
   String? restaurantPhone;
   int? detailsCount;
   String? orderNote;
-  DeliveryAddress? deliveryAddress;
+  DeliveryAddress ?deliveryAddress ;
   Customer? customer;
 
   OrderModel(
@@ -118,12 +113,8 @@ class OrderModel {
     restaurantPhone = json['restaurant_phone'];
     detailsCount = json['details_count'];
     orderNote = json['order_note'];
-    deliveryAddress = json['delivery_address'] != null
-        ? new DeliveryAddress.fromJson(json['delivery_address'])
-        : null;
-    customer = json['customer'] != null
-        ? new Customer.fromJson(json['customer'])
-        : null;
+    deliveryAddress = json['delivery_address']  ;
+    customer = json['customer']  ;
   }
 
   Map<String, dynamic> toJson() {
@@ -145,14 +136,14 @@ class OrderModel {
     data['updated_at'] = this.updatedAt;
     data['delivery_charge'] = this.deliveryCharge;
     data['original_delivery_charge'] = this.originalDeliveryCharge;
-    data['schedule_at'] = this.scheduleAt;
-    data['restaurant_name'] = this.restaurantName;
-    data['restaurant_address'] = this.restaurantAddress;
-    data['restaurant_lat'] = this.restaurantLat;
-    data['restaurant_lng'] = this.restaurantLng;
-    data['restaurant_logo'] = this.restaurantLogo;
-    data['restaurant_phone'] = this.restaurantPhone;
-    data['details_count'] = this.detailsCount;
+    data['schedule_at'] =  scheduleAt;
+    data['restaurant_name'] = restaurantName;
+    data['restaurant_address'] = restaurantAddress;
+    data['restaurant_lat'] = restaurantLat;
+    data['restaurant_lng'] =  restaurantLng;
+    data['restaurant_logo'] = restaurantLogo;
+    data['restaurant_phone'] =  restaurantPhone;
+    data['details_count'] = detailsCount;
     data['order_note'] = this.orderNote;
     if (this.deliveryAddress != null) {
       data['delivery_address'] = this.deliveryAddress!.toJson();
@@ -163,7 +154,6 @@ class OrderModel {
     return data;
   }
 }
-
 class DeliveryAddress {
   int? id;
   String ?addressType;
@@ -206,20 +196,19 @@ class DeliveryAddress {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['address_type'] = this.addressType;
-    data['contact_person_number'] = this.contactPersonNumber;
-    data['address'] = this.address;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['user_id'] = this.userId;
-    data['contact_person_name'] = this.contactPersonName;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['zone_id'] = this.zoneId;
+    data['id'] = id;
+    data['address_type'] = addressType;
+    data['contact_person_number'] =  contactPersonNumber;
+    data['address'] = address;
+    data['latitude'] =latitude;
+    data['longitude'] = longitude;
+    data['user_id'] = userId;
+    data['contact_person_name'] =  contactPersonName;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['zone_id'] = zoneId;
     return data;
-  }
-}
+  }}
 
 class Customer {
   int? id;
