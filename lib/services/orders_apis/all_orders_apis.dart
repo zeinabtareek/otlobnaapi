@@ -10,90 +10,114 @@ import '../../repositories/orders_repo/all_orders_repo.dart';
 
 class AllOrdersAPI extends AllOrdersRepo {
   AuthHelper authHelper = AuthHelper();
+
   @override
   Future<PaginatedOrderModel?> getAllOrders(int offset) async {
     PaginatedOrderModel? orders;
-    try {http.Response response = await http.get(Uri.parse('${ConstStrings.baseURL}${ConstStrings.allOrdersURL}${authHelper.authToken}/1/$offset'));
+    try {
+      http.Response response = await http.get(Uri.parse(
+          '${ConstStrings.baseURL}${ConstStrings.allOrdersURL}${authHelper.authToken}/1/$offset'));
       if (response.statusCode == 200) {
         print(response.body);
         orders = PaginatedOrderModel.fromJson(jsonDecode(response.body));
         CacheHelper.saveData(key: 'order_id', value: orders.orders![1].id);
 
-        return orders;}
-      else {
-        print('*******getAllOrdersError*********');}
+        return orders;
+      } else {
+        print('*******getAllOrdersError*********');
+      }
     } catch (e) {
       print(e);
     }
     return orders;
   }
-  Future<OrderDetailsModel>getOrderDetails(int id)async{
-    OrderDetailsModel orderModel=OrderDetailsModel();
-    try{
-      id=authHelper.orderId;
-      http.Response response=await http.get(Uri.parse('${ConstStrings.baseURL}${ConstStrings.orderDetailsURL}${authHelper.authToken}$id'));
-      if(response.statusCode==200){
+
+  Future<List<OrderDetailsModel>?> getOrderDetails(int id) async {
+    try {
+      // id=authHelper.orderId;
+      http.Response response = await http.get(Uri.parse(
+          'https://otlobna-eg.com/api/v1/delivery-man/order-details/${authHelper.authToken}/100023'));
+      if (response.statusCode == 200) {
         print(response.body);
-        var data=jsonDecode(response.body);
-        orderModel=OrderDetailsModel.fromJson(data);
-        print(orderModel);
-        return orderModel;
-      }else{
+        var data = jsonDecode(response.body);
+        final mList =
+            List<OrderDetailsModel>.from(data.map((i) => OrderDetailsModel.fromJson(i)));
+        print(mList.length);
+        return mList;
+      } else {
         print('*******getOrdersDetails*********');
         throw Exception();
-       }
-      }catch(e){
-      print(e);}
+      }
+    } catch (e) {
+      print(e);
+    }
 
-   return orderModel;
+    return null;
   }
+
+  // Future<List<OrderModel>?> getProduct() async {
+  //   try {
+  //     Response response = await _dio.get(
+  //       "https://otlobna-eg.com/api/v1/delivery-man/order-details/iSPpTsboWYunR0TnU0qROT9UDKM3sEAGULgLwRpIvEQE3LfkMkHqajYL0YfbgV8bIlAPSShjbfXhod7Ihagluy7ZfP3asGhUpruLkJQ4DOBZaHcqbMcBaIJp/100023",
+  //     );
+  //     if (response.statusCode == 200) {
+  //       final mList = List<OrderModel>.from(
+  //           response.data.map((i) => OrderModel.fromJson(i)));
+  //       print(mList.length);
+  //
+  //
+  //       return mList;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //   return null;
+  // }
 
   @override
   Future<OrderModel> getCurrentOrder() {
-     throw UnimplementedError();
+    throw UnimplementedError();
   }
 
-
-
-
   @override
-  Future<OrderModel> getLatestOrders() async{
-    OrderModel orderModel=OrderModel( );
-    try{
-      http.Response response=await http.get(Uri.parse('${ConstStrings.baseURL}${ConstStrings.latestOrdersURL}${authHelper.authToken}'));
-      if(response.body==200){
+  Future<OrderModel> getLatestOrders() async {
+    OrderModel orderModel = OrderModel();
+    try {
+      http.Response response = await http.get(Uri.parse(
+          '${ConstStrings.baseURL}${ConstStrings.latestOrdersURL}${authHelper.authToken}'));
+      if (response.body == 200) {
         print(response.body);
-        var data=jsonDecode(response.body);
-        orderModel=await OrderModel.fromJson(data);
+        var data = jsonDecode(response.body);
+        orderModel = await OrderModel.fromJson(data);
         print('grtLatestOrders :==${orderModel.paymentMethod}');
         return orderModel;
       }
-    }catch(e){
+    } catch (e) {
       print(e);
     }
- return orderModel;
-}
+    return orderModel;
+  }
 
   @override
-  Future<OrderModel> getOrderDeliveryHistory(int id) async{
-    OrderModel orderModel=OrderModel();
+  Future<OrderModel> getOrderDeliveryHistory(int id) async {
+    OrderModel orderModel = OrderModel();
 
-    try{
-      id=authHelper.orderId;
-      http.Response response =await http.get(Uri.parse('${ConstStrings.baseURL}${ConstStrings.orderDeliveryHistory}${authHelper.authToken}$id'));
-      if(response.statusCode==200){
+    try {
+      id = authHelper.orderId;
+      http.Response response = await http.get(Uri.parse(
+          '${ConstStrings.baseURL}${ConstStrings.orderDeliveryHistory}${authHelper.authToken}$id'));
+      if (response.statusCode == 200) {
         print(response.body);
-        var data=jsonDecode(response.body);
-        orderModel=await OrderModel.fromJson(data);
+        var data = jsonDecode(response.body);
+        orderModel = await OrderModel.fromJson(data);
         print(orderModel);
         return orderModel;
+      } else {
+        print('*******getOrderDeliveryHistory*********');
       }
-      else {
-        print('*******getOrderDeliveryHistory*********');}
-
-     }catch(e){
+    } catch (e) {
       throw Exception();
     }
-      return orderModel;
+    return orderModel;
   }
 }

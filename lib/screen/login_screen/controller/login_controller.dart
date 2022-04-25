@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:otlobnaapi/constant/cache_helper.dart';
+import 'package:otlobnaapi/screen/home_screen/home_screen.dart';
+import 'package:otlobnaapi/screen/order_details_screen/order_details_screen.dart';
 
 import '../../../services/loginNumber_apis/login_apis.dart';
 
 class LoginController extends GetxController {
-
   final _services = LoginApi();
   final email = ''.obs;
   final password = ''.obs;
-   bool _isActiveRememberMe = false;
+  bool _isActiveRememberMe = false;
 
   bool get isActiveRememberMe => _isActiveRememberMe;
 
@@ -22,11 +23,15 @@ class LoginController extends GetxController {
     password.value = pass;
     print(password.value);
   }
-isChecked( ){
-  _isActiveRememberMe = !_isActiveRememberMe;
+
+  isChecked() {
+    _isActiveRememberMe = !_isActiveRememberMe;
     update();
-}
+  }
+
   login() {
-    _services.generateToken(email: email.value, password: password.value);
+    _services
+        .generateToken(email: email.value, password: password.value)
+        .then((value) => Get.to(HomeScreen()));
   }
 }
